@@ -1,0 +1,17 @@
+<?php
+
+# Docs: https://mlocati.github.io/php-cs-fixer-configurator/#version:2.17
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(__DIR__)
+    ->exclude('var')
+;
+
+$config = new PhpCsFixer\Config();
+
+return $config->setRules([
+    'strict_param' => true,
+    'array_syntax' => ['syntax' => 'short'],
+    'concat_space' => ['spacing' => 'one'],
+    'linebreak_after_opening_tag' => false,
+])->setFinder($finder);

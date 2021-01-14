@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Shared\Infrastructure\:
+        resource: '../../../../src/Shared/Infrastructure/'
+        exclude: '../../../../src/Shared/Infrastructure/{Symfony,Persistence}'
+
+    Shared\Infrastructure\Symfony\Controller\:
+        resource: '../../../../src/Shared/Infrastructure/Symfony/Controller'
+        tags: [ 'controller.service_arguments' ]
+
+imports:
+    - { resource: event_listeners.yaml }
+    - { resource: serializers.yaml }

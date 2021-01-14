@@ -1,0 +1,15 @@
+services:
+    method_not_allowed_http_exception_listener:
+        class: Shared\Infrastructure\Symfony\EventListener\MethodNotAllowedHttpExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
+    not_found_http_exception_listener:
+        class: Shared\Infrastructure\Symfony\EventListener\NotFoundHttpExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
+
+    domain_exception_listener:
+        class: Shared\Infrastructure\Symfony\EventListener\DomainExceptionListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

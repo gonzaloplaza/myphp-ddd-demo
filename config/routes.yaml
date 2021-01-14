@@ -1,3 +1,7 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+shared:
+    resource: 'context/shared/routes.yaml'
+
+api_v1:
+    resource: 'context/api/routes.yaml'
+    prefix: '/api/v1'
+    name_prefix: 'api_v1_'

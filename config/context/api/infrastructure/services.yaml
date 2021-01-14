@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Api\Infrastructure\:
+        resource: '../../../../src/Api/Infrastructure/'
+        exclude: '../../../../src/Api/Infrastructure/{Symfony,Persistence}'
+
+    Api\Infrastructure\Symfony\Controller\:
+        resource: '../../../../src/Api/Infrastructure/Symfony/Controller'
+        tags: [ 'controller.service_arguments' ]

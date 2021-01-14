@@ -1,0 +1,6 @@
+.idea
+var/cache/*
+var/log/*
+README.md
+.env.*
+buildspec.yml

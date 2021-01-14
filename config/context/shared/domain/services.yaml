@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Shared\Domain\:
+        resource: '../../../../src/Shared/Domain/'
+
+    Shared\Domain\UuidGenerator: '@Shared\Infrastructure\Service\UidGenerator\SymfonyUuidGenerator'
+    Shared\Domain\Logger: '@Shared\Infrastructure\Service\Logging\MonologLogger'
