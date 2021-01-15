@@ -22,9 +22,9 @@
 - Good practices: DDD (Domain Drive Design), Bounded contexts, SOLID principles... 
 - Work in progress...
 
-### Development tools
+### Development quality/testing tools
 
-- PHPStan (PHP Static Analysis Tool)
+- PHPStan (PHP Static Analysis)
 - PHPMD (PHP Mess Detector)
 - PHPUnit (testing framework for PHP)
 - PHP-CS-Fixer (PHP Coding Standards Fixer)
@@ -35,7 +35,9 @@
 
 Install composer vendors
 
-    $ composer install
+```
+composer install
+```
 
 Copy ``.env`` to ```.env.local``` to override environment variables
 
@@ -43,43 +45,66 @@ Copy ``.env`` to ```.env.local``` to override environment variables
 
 You'll need to install Symfony cli locally to run dev server (https://symfony.com/download)
 
-    $ symfony server:start -d
-
+```
+composer dev
+```
 or
-   
-    $ composer dev
+```
+symfony server:start -d
+```
 
 Development endpoint is: http://127.0.0.1:8000
 
+### Run quality tools checking (Static Analysis, Mess Detector...)
+
+```
+composer phpstan
+composer phpmd
+```
+
+### Run tests (PHPUnit)
+
+```
+composer tests
+```
+or
+
+```
+php bin/phpunit
+```
 
 ### Production steps
 
 Build the image:
 
-    $ docker build -t myphp-ddd-demo .
+```
+docker build -t myphp-ddd-demo .
+```
 
-Start the Docker container (passing env variables):
+Start the Docker container (passing env variables if exists):
 
-    $ docker run --rm -d -p 8086:8086 \
-      --name myphp-ddd-demo myphp-ddd-demo
+```
+docker run --rm -d -p 8086:8086 \
+    --name myphp-ddd-demo myphp-ddd-demo
+```
 
-Container endpoint is: http://localhost:8086
+Container endpoint is running: http://localhost:8086
 
 ### Docker container Description
 
 Example PHP-FPM 7.4 & Nginx 1.16 setup for Docker, build on [Alpine Linux](http://www.alpinelinux.org/).
-The image is only +/- 35MB large.
+The image is only +/- 35 MB large.
 
 - Built on the lightweight and secure Alpine Linux distribution
 - Very small Docker image size (+/-35MB)
 - Uses PHP 7.4
 - Optimized for 100 concurrent users
-- Optimized to only use resources when there's traffic (by using PHP-FPM's ondemand PM)
+- Optimized to only use resources when there's traffic (by using PHP-FPM ondemand PM)
 - The servers Nginx, PHP-FPM and supervisord run under a non-privileged user (nobody) to make it more secure
 - The logs of all the services are redirected to the output of the Docker container (visible with `docker logs -f <container name>`)
 - Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs
 
 ### Docker configuration
 
-In [docker/](docker) you'll find the default configuration files for Nginx, PHP and PHP-FPM.
+In [docker/](./etc/docker) you'll find the default configuration files for Nginx, PHP and PHP-FPM.
 If you want to extend or customize that, you can do so by mounting a configuration file in the correct folder.

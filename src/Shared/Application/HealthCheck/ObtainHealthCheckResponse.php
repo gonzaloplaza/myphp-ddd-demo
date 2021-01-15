@@ -6,25 +6,23 @@ use Shared\Domain\Model\HealthCheck\HealthCheck;
 
 final class ObtainHealthCheckResponse
 {
-    private HealthCheck $status;
+    private string $id;
+    private bool $success;
+    private int $timestamp;
 
-    public function __construct(HealthCheck $status)
+    public function __construct(string $id, bool $success, int $timestamp)
     {
-        $this->status = $status;
+        $this->id = $id;
+        $this->success = $success;
+        $this->timestamp = $timestamp;
     }
 
-    public static function create(HealthCheck $status): self
+    public static function create(HealthCheck $healthCheck): self
     {
-        return new self($status);
-    }
-
-    public function toArray(): array
-    {
-        return [
-            'id' => $this->status->id(),
-            'success' => $this->status->success(),
-            'timestamp' => $this->status->timestamp()
-        ];
-
+        return new self(
+            $healthCheck->id()->value(),
+            $healthCheck->success(),
+            $healthCheck->timestamp()
+        );
     }
 }

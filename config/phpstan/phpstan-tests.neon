@@ -1,7 +1,10 @@
 parameters:
-    level: 7
+    level: 6
     paths:
         - ../../tests
     symfony:
         container_xml_path: ../../var/cache/test/Shared_Infrastructure_Symfony_KernelTestDebugContainer.xml
         console_application_loader: console-application-loader.php
+
+    # custom check rules
+    checkMissingIterableValueType: false

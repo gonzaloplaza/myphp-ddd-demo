@@ -20,9 +20,9 @@ final class HealthCheck
         return new self($id, $success, $timestamp);
     }
 
-    public function id(): string
+    public function id(): HealthCheckId
     {
-        return $this->id->value();
+        return $this->id;
     }
 
     public function success(): bool

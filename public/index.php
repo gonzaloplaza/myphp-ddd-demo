@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 use Shared\Infrastructure\Symfony\Kernel;
 use Symfony\Component\Dotenv\Dotenv;

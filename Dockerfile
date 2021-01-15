@@ -18,7 +18,7 @@ RUN apk --update-cache add ca-certificates && \
 
 RUN apk --no-cache add php php-fpm php-dom php-openssl php-curl \
   php-zlib php-xml php-phar php-iconv php-intl php-ctype php-session \
-  php-mbstring php-gd php-json nginx supervisor curl iputils \
+  php-mbstring php-gd php-json nginx supervisor curl \
   && ln -s /usr/bin/php7 /usr/bin/php
 
 # Check PHP, Composer versions

@@ -1,5 +1,7 @@
 shared:
     resource: 'context/shared/routes.yaml'
+    prefix: '/'
+    name_prefix: 'shared_'
 
 api_v1:
     resource: 'context/api/routes.yaml'

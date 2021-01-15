@@ -1,7 +1,10 @@
 parameters:
-    level: 4
+    level: 6
     paths:
         - ../../src
     symfony:
         container_xml_path: ../../var/cache/dev/Shared_Infrastructure_Symfony_KernelDevDebugContainer.xml
         console_application_loader: console-application-loader.php
+
+    # custom rules
+    checkMissingIterableValueType: false

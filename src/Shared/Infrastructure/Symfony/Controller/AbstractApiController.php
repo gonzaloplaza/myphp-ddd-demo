@@ -17,7 +17,7 @@ abstract class AbstractApiController
         $this->logger = $logger;
     }
 
-    protected function serializeResponse($response): ?string
+    protected function serializeResponse(object $response): ?string
     {
         return $this->serializer->serialize($response, JsonEncoder::FORMAT);
     }

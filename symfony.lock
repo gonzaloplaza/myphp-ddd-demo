@@ -1,4 +1,7 @@
 {
+    "beberlei/assert": {
+        "version": "v3.3.0"
+    },
     "composer/semver": {
         "version": "3.2.4"
     },
@@ -32,8 +35,26 @@
             ".php_cs.dist"
         ]
     },
+    "hamcrest/hamcrest-php": {
+        "version": "v2.0.1"
+    },
+    "mockery/mockery": {
+        "version": "1.4.2"
+    },
     "monolog/monolog": {
         "version": "2.2.0"
+    },
+    "nelmio/cors-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "config/packages/nelmio_cors.yaml"
+        ]
     },
     "pdepend/pdepend": {
         "version": "2.8.0"
@@ -51,7 +72,10 @@
         "version": "1.1.0"
     },
     "phpstan/phpstan": {
-        "version": "0.12.18"
+        "version": "0.12.67"
+    },
+    "phpstan/phpstan-beberlei-assert": {
+        "version": "0.12.4"
     },
     "phpstan/phpstan-symfony": {
         "version": "0.12.14"
