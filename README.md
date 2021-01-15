@@ -4,6 +4,7 @@
 ![php 7.4](https://img.shields.io/badge/php-7.4-brightgreen.svg)
 [![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://phpstan.org/)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/gonzaloplaza/myphp-ddd-demo)
+[![Quality Checks](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/quality-checks/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ------
