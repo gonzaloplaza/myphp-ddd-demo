@@ -1,5 +1,6 @@
 {
     "name": "gonzaloplaza/myphp-ddd-demo",
+    "description": "Another Template for Well-designed Symfony API Projects",
     "authors": [
         {
             "name": "Gonzalo Plaza",

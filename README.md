@@ -96,7 +96,7 @@ Example PHP-FPM 7.4 & Nginx 1.16 setup for Docker, build on [Alpine Linux](http:
 The image is only +/- 35 MB large.
 
 - Built on the lightweight and secure Alpine Linux distribution
-- Very small Docker image size (+/-35MB)
+- Very small Docker image size (+/-35 MB)
 - Uses PHP 7.4
 - Optimized for 100 concurrent users
 - Optimized to only use resources when there's traffic (by using PHP-FPM ondemand PM)
