@@ -1,6 +1,14 @@
-# /api/v1 routes
+index:
+    resource: 'routes/index.yaml'
+    prefix: '/'
 
-get_check:
-    path: /check
-    controller: Api\Infrastructure\Symfony\Controller\CheckGetController
-    methods: GET
+health_check:
+    resource: 'routes/health_check.yaml'
+    prefix: '/'
+
+# /api/v1 routes
+api_v1:
+    resource: 'routes/api_v1.yaml'
+    prefix: '/api/v1'
+    name_prefix: 'api_v1_'
+

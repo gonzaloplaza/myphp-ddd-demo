@@ -1,4 +1,4 @@
-# GitHub Action for Symfony
+# GitHub Action for Symfony5+PHP7
 name: quality-checks
 on: [push, pull_request]
 jobs:
@@ -8,7 +8,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                operating-system: [ubuntu-latest, windows-latest, macos-latest]
+                operating-system: [ubuntu-latest, macos-latest]
                 php-versions: ['7.4']
         steps:
             - name: Checkout
@@ -34,9 +34,9 @@ jobs:
                   composer require --dev symfony/phpunit-bridge
                   composer install --no-progress --prefer-dist --optimize-autoloader
                   php bin/phpunit install
-            - name: Run Tests
-              run: php bin/phpunit --coverage-text
             - name: Run PHPStan
               run: composer phpstan
             - name: Run PHPMD
               run: composer phpmd
+            - name: Run Tests
+              run: composer tests

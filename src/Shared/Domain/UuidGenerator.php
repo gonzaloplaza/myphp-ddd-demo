@@ -1,8 +1,8 @@
-<?php declare(strict_types=1);
+<?php
 
 namespace Shared\Domain;
 
 interface UuidGenerator
 {
-    public static function generate(): string;
+    public function generate(): string;
 }

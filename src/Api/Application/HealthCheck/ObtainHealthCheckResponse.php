@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Shared\Application\HealthCheck;
+namespace Api\Application\HealthCheck;
 
-use Shared\Domain\Model\HealthCheck\HealthCheck;
+use Api\Domain\Model\HealthCheck\HealthCheck;
 
 final class ObtainHealthCheckResponse
 {
@@ -24,5 +24,10 @@ final class ObtainHealthCheckResponse
             $healthCheck->success(),
             $healthCheck->timestamp()
         );
+    }
+
+    public function success(): bool
+    {
+        return $this->success;
     }
 }

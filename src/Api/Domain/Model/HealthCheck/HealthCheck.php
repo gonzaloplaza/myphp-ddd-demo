@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shared\Domain\Model\HealthCheck;
+namespace Api\Domain\Model\HealthCheck;
 
 final class HealthCheck
 {

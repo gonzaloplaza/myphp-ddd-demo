@@ -24,6 +24,7 @@
         "symfony/dotenv": "5.2.*",
         "symfony/flex": "^1.3.1",
         "symfony/framework-bundle": "5.2.*",
+        "symfony/http-client": "5.2.*",
         "symfony/monolog-bundle": "^3.6",
         "symfony/property-access": "5.2.*",
         "symfony/serializer": "5.2.*",
@@ -31,6 +32,11 @@
         "symfony/yaml": "5.2.*"
     },
     "require-dev": {
+        "ext-xdebug": "*",
+        "behat/behat": "^3.8",
+        "friends-of-behat/mink-browserkit-driver": "^1.4",
+        "friends-of-behat/mink-extension": "^2.4",
+        "friends-of-behat/symfony-extension": "^2.1",
         "friendsofphp/php-cs-fixer": "^2.17",
         "mockery/mockery": "^1.4",
         "phpmd/phpmd": "^2.9",
@@ -55,7 +61,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/src/"
         }
     },
     "replace": {
@@ -67,17 +73,19 @@
         "dev": "symfony server:stop && symfony server:start -d",
         "phpstan": [
             "@php bin/console cache:warmup --env=dev",
-            "@php bin/console cache:warmup --env=test",
-            "@phpstan-src",
-            "@phpstan-tests"
+            "@phpstan-src"
         ],
         "phpstan-src": "phpstan analyse -c config/phpstan/phpstan.neon --no-progress",
         "phpstan-tests": "phpstan analyse -c config/phpstan/phpstan-tests.neon --no-progress",
         "phpmd" : [
-            "@phpmd-src"
+            "phpmd src text config/phpmd/phpmd_ruleset.xml"
         ],
-        "phpmd-src": "phpmd src text config/phpmd/phpmd_ruleset.xml",
-        "tests": "php bin/phpunit",
+        "tests": [
+            "@phpunit",
+            "@behat"
+        ],
+        "phpunit": "@php bin/phpunit",
+        "behat": "behat --config config/behat/behat.yaml",
         "auto-scripts": {
             "cache:clear": "symfony-cmd"
         },

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
+
 <ruleset name="My first PHPMD rule set"
          xmlns="http://pmd.sf.net/ruleset/1.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
-                     http://pmd.sf.net/ruleset_xml_schema.xsd"
-         xsi:noNamespaceSchemaLocation="
-                     http://pmd.sf.net/ruleset_xml_schema.xsd">
-    <description>
-        Application PHPMD rule set for checking code
-    </description>
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <description>Application PHPMD rule set for checking code</description>
+
+    <exclude-pattern>Kernel.php</exclude-pattern>
 
     <rule ref="rulesets/cleancode.xml" >
         <exclude name="StaticAccess" />
@@ -17,10 +17,9 @@
     <rule ref="rulesets/design.xml" />
     <rule ref="rulesets/naming.xml">
         <exclude name="ShortVariable" />
+        <exclude name="LongVariable" />
         <exclude name="ShortMethodName" />
     </rule>
     <rule ref="rulesets/unusedcode.xml" />
-
-    <exclude-pattern>Kernel.php</exclude-pattern>
 
 </ruleset>

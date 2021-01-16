@@ -7,5 +7,5 @@ services:
     Shared\Domain\:
         resource: '../../../../src/Shared/Domain/'
 
-    Shared\Domain\UuidGenerator: '@Shared\Infrastructure\Service\UidGenerator\SymfonyUuidGenerator'
-    Shared\Domain\Logger: '@Shared\Infrastructure\Service\Logging\MonologLogger'
+    Shared\Domain\UuidGenerator: '@symfony_uuid_generator'
+    Shared\Domain\Logger: '@Shared\Infrastructure\Logging\MonologLogger'

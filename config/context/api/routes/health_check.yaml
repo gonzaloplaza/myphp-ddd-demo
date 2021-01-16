@@ -1,0 +1,6 @@
+# HealthCheck endpoint
+
+get_health_check:
+    path: /health_check
+    controller: Api\Infrastructure\Symfony\Controller\HealthCheckGetController
+    methods: GET

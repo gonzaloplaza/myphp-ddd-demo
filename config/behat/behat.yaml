@@ -1,0 +1,23 @@
+default:
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+            kernel:
+                class: Shared\Infrastructure\Symfony\Kernel
+                environment: test
+            bootstrap: tests/src/bootstrap.php
+        Behat\MinkExtension:
+            sessions:
+                symfony:
+                    symfony: ~
+            base_url: ''
+
+    formatters:
+        pretty: true
+
+    suites:
+        api:
+            contexts:
+                - Tests\Shared\Infrastructure\Behat\ApiRequestContext
+                - Tests\Shared\Infrastructure\Behat\ApiResponseContext
+            paths:
+                - tests/features/api

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shared\Infrastructure\Service\Logging;
+namespace Shared\Infrastructure\Logging;
 
 use Psr\Log\LoggerInterface;
 use Shared\Domain\Logger;

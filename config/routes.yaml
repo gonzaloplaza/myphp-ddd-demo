@@ -1,9 +1,3 @@
-shared:
-    resource: 'context/shared/routes.yaml'
-    prefix: '/'
-    name_prefix: 'shared_'
-
-api_v1:
+api:
     resource: 'context/api/routes.yaml'
-    prefix: '/api/v1'
-    name_prefix: 'api_v1_'
+    prefix: '/'

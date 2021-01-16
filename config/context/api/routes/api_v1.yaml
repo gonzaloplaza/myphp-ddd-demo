@@ -1,0 +1,4 @@
+get_check:
+    path: /check
+    controller: Api\Infrastructure\Symfony\Controller\CheckGetController
+    methods: GET

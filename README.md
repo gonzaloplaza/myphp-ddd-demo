@@ -1,8 +1,9 @@
 # MyPHP-DDD-Demo - Another Template for Well-designed Symfony API Projects
 
-![nginx 1.16.1](https://img.shields.io/badge/nginx-1.16-brightgreen.svg)
-![php 7.4](https://img.shields.io/badge/php-7.4-brightgreen.svg)
-[![PHPStan](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://phpstan.org/)
+![nginx 1.16.1](https://img.shields.io/badge/nginx-1.16-brightgreen.svg?style=flat)
+![php 7.4](https://img.shields.io/badge/php-7.4-brightgreen.svg?style=flat)
+[![Symfony 5.2.*](https://img.shields.io/badge/Symfony-5.2.*-brightgreen.svg?style=flat)](https://symfony.com)
+[![PHPStan](https://img.shields.io/badge/PHPUnit-enabled-brightgreen.svg?style=flat)](https://phpunit.de/)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/gonzaloplaza/myphp-ddd-demo)
 [![Quality Checks](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/quality-checks/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -10,8 +11,8 @@
 ------
 
 - **Author**: Gonzalo Plaza <gonzalo@verize.com>
-- **Version**: 0.0.1
 - **Date**: January 2021
+- **Website**: https://gonzaloplaza.com
 
 ------
 
@@ -19,16 +20,18 @@
 
 - PHP-FPM 7.4
 - Symfony 5.2
-- Monolog  
-- Good practices: DDD (Domain Drive Design), Bounded contexts, SOLID principles... 
+- Docker (Alpine, nginx, php-fpm, supervisord ...)
+- Good practices: DDD (Domain Drive Design), Bounded Contexts, SOLID principles, TDD&BDD... 
 - Work in progress...
 
 ### Development quality/testing tools
 
 - PHPStan (PHP Static Analysis)
 - PHPMD (PHP Mess Detector)
-- PHPUnit (testing framework for PHP)
 - PHP-CS-Fixer (PHP Coding Standards Fixer)
+
+- PHPUnit (testing framework for PHP)
+- Behat (Behavior-Driven Development framework)
 
 -------
 
@@ -37,21 +40,21 @@
 Install composer vendors
 
 ```
-composer install
+$ composer install
 ```
 
-Copy ``.env`` to ```.env.local``` to override environment variables
+Copy ``.env`` to ``.env.local`` to override environment variables
 
 ### Run development
 
 You'll need to install Symfony cli locally to run dev server (https://symfony.com/download)
 
 ```
-composer dev
+$ composer dev
 ```
 or
 ```
-symfony server:start -d
+$ symfony server:start -d
 ```
 
 Development endpoint is: http://127.0.0.1:8000
@@ -59,19 +62,24 @@ Development endpoint is: http://127.0.0.1:8000
 ### Run quality tools checking (Static Analysis, Mess Detector...)
 
 ```
-composer phpstan
-composer phpmd
+$ composer phpstan
+$ composer phpmd
 ```
 
-### Run tests (PHPUnit)
+### Run tests (Behat & PHPUnit)
+
+Note: Starting local server is not needed to run tests (including e2e api tests) due
+to Symfony application bootstraping in ```tests/src/bootstrap.php```
+file and Mink Extension.
 
 ```
-composer tests
+$ composer tests
 ```
-or
+or separately
 
 ```
-php bin/phpunit
+$ composer behat
+$ composer phpunit
 ```
 
 ### Production steps
@@ -79,13 +87,13 @@ php bin/phpunit
 Build the image:
 
 ```
-docker build -t myphp-ddd-demo .
+$ docker build -t myphp-ddd-demo .
 ```
 
 Start the Docker container (passing env variables if exists):
 
 ```
-docker run --rm -d -p 8086:8086 \
+$ docker run --rm -d -p 8086:8086 \
     --name myphp-ddd-demo myphp-ddd-demo
 ```
 
@@ -100,9 +108,10 @@ The image is only +/- 35 MB large.
 - Very small Docker image size (+/-35 MB)
 - Uses PHP 7.4
 - Optimized for 100 concurrent users
-- Optimized to only use resources when there's traffic (by using PHP-FPM ondemand PM)
+- Optimized to only use resources when there's traffic (by using PHP-FPM's on-demand PM)
 - The servers Nginx, PHP-FPM and supervisord run under a non-privileged user (nobody) to make it more secure
-- The logs of all the services are redirected to the output of the Docker container (visible with `docker logs -f <container name>`)
+- The logs of all the services are redirected to the output of the Docker container (visible with 
+  `docker logs -f <container name>`)
 - Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs
 
 ### Docker configuration

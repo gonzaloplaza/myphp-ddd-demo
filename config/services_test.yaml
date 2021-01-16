@@ -1,0 +1,11 @@
+framework:
+    test: true
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: false
+
+    Tests\Shared\Infrastructure\:
+        resource: '../tests/src/Shared/Infrastructure'

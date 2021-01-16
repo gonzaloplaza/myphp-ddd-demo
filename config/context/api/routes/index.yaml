@@ -1,0 +1,4 @@
+get_index:
+    path: /
+    controller: Api\Infrastructure\Symfony\Controller\IndexGetController
+    methods: GET
