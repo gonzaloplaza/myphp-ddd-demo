@@ -3,3 +3,6 @@ services:
         autowire: true
         autoconfigure: true
         public: false
+
+    # Repositories
+    Api\Domain\Model\Note\NoteRepository: '@Api\Infrastructure\Persistence\InMemory\InMemoryNoteRepository'

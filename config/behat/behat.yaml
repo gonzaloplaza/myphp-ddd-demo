@@ -20,4 +20,6 @@ default:
                 - Tests\Shared\Infrastructure\Behat\ApiRequestContext
                 - Tests\Shared\Infrastructure\Behat\ApiResponseContext
             paths:
-                - tests/features/api
+                - tests/e2e/features/api/index
+                - tests/e2e/features/api/notes
+                - tests/e2e/features/api/healthcheck

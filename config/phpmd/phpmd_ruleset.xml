@@ -9,6 +9,7 @@
     <description>Application PHPMD rule set for checking code</description>
 
     <exclude-pattern>Kernel.php</exclude-pattern>
+    <exclude-pattern>*Normalizer.php</exclude-pattern>
 
     <rule ref="rulesets/cleancode.xml" >
         <exclude name="StaticAccess" />

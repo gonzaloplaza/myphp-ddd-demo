@@ -1,4 +1,14 @@
-get_check:
-    path: /check
-    controller: Api\Infrastructure\Symfony\Controller\CheckGetController
+get_notes:
+    path: /notes
+    controller: Api\Infrastructure\Symfony\Controller\Notes\NotesGetController
     methods: GET
+
+get_notes_by_id:
+    path: /notes/{id}
+    controller: Api\Infrastructure\Symfony\Controller\Notes\NotesGetByIdController
+    methods: GET
+
+post_notes:
+    path: /notes
+    controller: Api\Infrastructure\Symfony\Controller\Notes\NotesPostController
+    methods: POST

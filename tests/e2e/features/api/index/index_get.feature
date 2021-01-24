@@ -1,5 +1,5 @@
 Feature: Api Index endpoint
-  Scenario: It receives a response from Index route
+  Scenario: It receives a response from Index endpoint
     When I send a "GET" request to "/"
     Then the response status code should be 200
     Then the response content should be:

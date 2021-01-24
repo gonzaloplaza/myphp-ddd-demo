@@ -3,24 +3,19 @@
 namespace Tests\Api\Application\HealthCheck;
 
 use Api\Application\HealthCheck\ObtainHealthCheck;
-use Shared\Domain\UuidGenerator;
-use Tests\Shared\Infrastructure\PHPUnit\UnitTestCase;
+use Api\Application\HealthCheck\ObtainHealthCheckResponse;
+use Tests\Api\ApiUnitTestCase;
 
-final class ObtainHealthCheckTest extends UnitTestCase
+final class ObtainHealthCheckTest extends ApiUnitTestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
     /** @test */
-    public function it_should_get_a_new_succeeded_healtcheck_response_object(): void
+    public function it_should_return_a_succeeded_healthcheck_response(): void
     {
-        $uuidGenerator = $this->createMock(UuidGenerator::class);
-
-        $obtainHealthCheck = new ObtainHealthCheck($uuidGenerator);
+        $obtainHealthCheck = new ObtainHealthCheck($this->uuidGenerator());
 
         $obtainHealthCheckResponse = $obtainHealthCheck->__invoke();
+
+        $this->assertInstanceOf(ObtainHealthCheckResponse::class, $obtainHealthCheckResponse);
 
         $this->assertTrue($obtainHealthCheckResponse->success());
     }

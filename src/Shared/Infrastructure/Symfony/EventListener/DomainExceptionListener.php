@@ -17,7 +17,7 @@ final class DomainExceptionListener
         }
 
         //Default Domain Exception errorCode
-        $errorCode = JsonResponse::HTTP_BAD_REQUEST;
+        $errorCode = $exception->getCode() ?? JsonResponse::HTTP_BAD_REQUEST;
 
         $event->setResponse(new JsonResponse(
             [

@@ -19,7 +19,7 @@ final class MonologLoggerTest extends InfrastructureTestCase
     }
 
     /** @test */
-    public function it_should_register_a_log_without_exceptions(): void
+    public function it_should_register_a_log(): void
     {
         $monologLogger = $this->service(Logger::class);
 

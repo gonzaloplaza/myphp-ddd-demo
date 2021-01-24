@@ -5,18 +5,11 @@ framework:
 
     default_locale: en
 
-    translator:
-        default_path: '%kernel.project_dir%/translations'
-        fallbacks:
-            - en
-
     session:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
 
-    #esi: true
-    #fragments: true
     php_errors:
         log: true
 

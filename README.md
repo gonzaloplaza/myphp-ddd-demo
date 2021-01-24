@@ -5,7 +5,7 @@
 [![Symfony 5.2.*](https://img.shields.io/badge/Symfony-5.2.*-brightgreen.svg?style=flat)](https://symfony.com)
 [![PHPStan](https://img.shields.io/badge/PHPUnit-enabled-brightgreen.svg?style=flat)](https://phpunit.de/)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/gonzaloplaza/myphp-ddd-demo)
-[![Quality Checks](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/quality-checks/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
+[![Github CI](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/ci/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ------

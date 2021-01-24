@@ -6,8 +6,11 @@ services:
 
     Api\Infrastructure\:
         resource: '../../../../src/Api/Infrastructure/'
-        exclude: '../../../../src/Api/Infrastructure/{Symfony,Persistence}'
+        exclude: '../../../../src/Api/Infrastructure/{Symfony}'
 
     Api\Infrastructure\Symfony\Controller\:
-        resource: '../../../../src/Api/Infrastructure/Symfony/Controller'
+        resource: '../../../../src/Api/Infrastructure/Symfony/Controller/'
         tags: [ 'controller.service_arguments' ]
+
+    Api\Infrastructure\Symfony\Console\:
+        resource: '../../../../src/Api/Infrastructure/Symfony/Console/'
