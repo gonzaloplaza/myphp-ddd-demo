@@ -30,9 +30,4 @@ abstract class InfrastructureTestCase extends KernelTestCase
     {
         return self::$container->get($id);
     }
-
-    protected function parameter($parameter)
-    {
-        return self::$container->getParameter($parameter);
-    }
 }

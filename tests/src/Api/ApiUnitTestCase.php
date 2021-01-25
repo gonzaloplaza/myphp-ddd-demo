@@ -19,11 +19,6 @@ abstract class ApiUnitTestCase extends UnitTestCase
         $this->application = new Application();
     }
 
-    protected function application(): Application
-    {
-        return $this->application;
-    }
-
     protected function noteRepository(): NoteRepository
     {
         return $this->noteRepository =

@@ -3,9 +3,9 @@
 ![nginx 1.16.1](https://img.shields.io/badge/nginx-1.16-brightgreen.svg?style=flat)
 ![php 7.4](https://img.shields.io/badge/php-7.4-brightgreen.svg?style=flat)
 [![Symfony 5.2.*](https://img.shields.io/badge/Symfony-5.2.*-brightgreen.svg?style=flat)](https://symfony.com)
-[![PHPStan](https://img.shields.io/badge/PHPUnit-enabled-brightgreen.svg?style=flat)](https://phpunit.de/)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/gonzaloplaza/myphp-ddd-demo)
 [![Github CI](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/ci/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
+[![codecov](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo/branch/master/graph/badge.svg?token=ELT3HK2YL1)](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ------
@@ -30,8 +30,10 @@
 - PHPMD (PHP Mess Detector)
 - PHP-CS-Fixer (PHP Coding Standards Fixer)
 
-- PHPUnit (testing framework for PHP)
+- PHPUnit (Testing framework for PHP)
 - Behat (Behavior-Driven Development framework)
+
+- [Codecov.io](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo) Integration (Code coverage)
 
 -------
 
@@ -47,7 +49,7 @@ Copy ``.env`` to ``.env.local`` to override environment variables
 
 ### Run development
 
-You'll need to install Symfony cli locally to run dev server (https://symfony.com/download)
+You have to install **Symfony CLI** locally to run dev server (https://symfony.com/download)
 
 ```
 $ composer dev
@@ -116,5 +118,5 @@ The image is only +/- 35 MB large.
 
 ### Docker configuration
 
-In [docker/](./etc/docker) you'll find the default configuration files for Nginx, PHP and PHP-FPM.
+In [etc/docker/](./etc/docker) you can find default configuration files for Nginx, PHP, PHP-FPM and Supervisord.
 If you want to extend or customize that, you can do so by mounting a configuration file in the correct folder.
