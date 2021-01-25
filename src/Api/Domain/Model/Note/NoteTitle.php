@@ -4,6 +4,6 @@ namespace Api\Domain\Model\Note;
 
 use Shared\Domain\ValueObject\StringValueObject;
 
-final class NoteContent extends StringValueObject
+final class NoteTitle extends StringValueObject
 {
 }

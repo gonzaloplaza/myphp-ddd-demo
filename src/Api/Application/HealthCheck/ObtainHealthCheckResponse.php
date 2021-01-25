@@ -6,28 +6,20 @@ use Api\Domain\Model\HealthCheck\HealthCheck;
 
 final class ObtainHealthCheckResponse
 {
-    private string $id;
-    private bool $success;
-    private int $timestamp;
+    private HealthCheck $healthCheck;
 
-    public function __construct(string $id, bool $success, int $timestamp)
+    public function __construct(HealthCheck $healthCheck)
     {
-        $this->id = $id;
-        $this->success = $success;
-        $this->timestamp = $timestamp;
+        $this->healthCheck = $healthCheck;
     }
 
     public static function create(HealthCheck $healthCheck): self
     {
-        return new self(
-            $healthCheck->id()->value(),
-            $healthCheck->success(),
-            $healthCheck->timestamp()
-        );
+        return new self($healthCheck);
     }
 
-    public function success(): bool
+    public function healthCheck(): HealthCheck
     {
-        return $this->success;
+        return $this->healthCheck;
     }
 }

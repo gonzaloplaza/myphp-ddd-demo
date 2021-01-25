@@ -14,6 +14,6 @@ final class UuidNormalizer implements ContextAwareNormalizerInterface
 
     public function normalize($object, string $format = null, array $context = [])
     {
-        return $object->value();
+        return strval($object->value());
     }
 }

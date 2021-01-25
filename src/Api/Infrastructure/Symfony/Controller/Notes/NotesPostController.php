@@ -14,7 +14,7 @@ final class NotesPostController extends AbstractApiController
     {
         return JsonResponse::fromJsonString(
             $this->serializeResponse(
-                $service->__invoke(CreateNoteRequest::create(
+                $service->__invoke(CreateNoteRequest::fromRequest(
                     $request->get('title'),
                     $request->get('content')
                 ))),

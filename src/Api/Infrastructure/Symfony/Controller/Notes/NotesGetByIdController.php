@@ -14,7 +14,7 @@ final class NotesGetByIdController extends AbstractApiController
     {
         return JsonResponse::fromJsonString(
             $this->serializeResponse($service->__invoke(
-                FindNoteByIdRequest::create($request->get('id'))
+                FindNoteByIdRequest::fromRequest($request->get('id'))
             )->note()),
             JsonResponse::HTTP_OK
         );

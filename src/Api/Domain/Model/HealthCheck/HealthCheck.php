@@ -5,17 +5,17 @@ namespace Api\Domain\Model\HealthCheck;
 final class HealthCheck
 {
     private HealthCheckId $id;
-    private bool $success;
-    private int $timestamp;
+    private HealthCheckSuccess $success;
+    private HealthCheckTimestamp $timestamp;
 
-    public function __construct(HealthCheckId $id, bool $success, int $timestamp)
+    public function __construct(HealthCheckId $id, HealthCheckSuccess $success, HealthCheckTimestamp $timestamp)
     {
         $this->id = $id;
         $this->success = $success;
         $this->timestamp = $timestamp;
     }
 
-    public static function create(HealthCheckId $id, bool $success, int $timestamp): self
+    public static function create(HealthCheckId $id, HealthCheckSuccess $success, HealthCheckTimestamp $timestamp): self
     {
         return new self($id, $success, $timestamp);
     }
@@ -25,12 +25,12 @@ final class HealthCheck
         return $this->id;
     }
 
-    public function success(): bool
+    public function success(): HealthCheckSuccess
     {
         return $this->success;
     }
 
-    public function timestamp(): int
+    public function timestamp(): HealthCheckTimestamp
     {
         return $this->timestamp;
     }

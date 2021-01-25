@@ -4,7 +4,6 @@ namespace Api\Domain\Model\Note;
 
 use Shared\Domain\Model\Collection;
 
-final class NotesCollection extends Collection
+class NotesCollection extends Collection
 {
-
 }

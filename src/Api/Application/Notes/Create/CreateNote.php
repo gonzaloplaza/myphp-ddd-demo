@@ -20,7 +20,8 @@ final class CreateNote
     {
         $note = Note::create(
             $this->noteRepository->nextId(),
-            new NoteContent($request->content())
+            $request->title(),
+            $request->content()
         );
 
         try {
@@ -29,6 +30,6 @@ final class CreateNote
             throw new NoteException();
         }
 
-        return CreateNoteResponse::create($note->id(), $note->createdAt());
+        return CreateNoteResponse::create($note->id());
     }
 }

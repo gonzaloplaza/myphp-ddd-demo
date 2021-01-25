@@ -25,6 +25,12 @@ services:
         tags:
             - { name: 'serializer.normalizer' }
 
+    Shared\Infrastructure\Symfony\Serializer\ValueObjectNormalizer:
+        class: Shared\Infrastructure\Symfony\Serializer\ValueObjectNormalizer
+        public: false
+        tags:
+            - { name: 'serializer.normalizer' }
+
     Shared\Infrastructure\Symfony\Serializer\CollectionNormalizer:
         class: Shared\Infrastructure\Symfony\Serializer\CollectionNormalizer
         public: false

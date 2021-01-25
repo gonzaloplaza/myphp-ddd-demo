@@ -4,6 +4,7 @@ namespace Tests\Api\Application\HealthCheck;
 
 use Api\Application\HealthCheck\ObtainHealthCheck;
 use Api\Application\HealthCheck\ObtainHealthCheckResponse;
+use Api\Domain\Model\HealthCheck\HealthCheck;
 use Tests\Api\ApiUnitTestCase;
 
 final class ObtainHealthCheckTest extends ApiUnitTestCase
@@ -17,6 +18,8 @@ final class ObtainHealthCheckTest extends ApiUnitTestCase
 
         $this->assertInstanceOf(ObtainHealthCheckResponse::class, $obtainHealthCheckResponse);
 
-        $this->assertTrue($obtainHealthCheckResponse->success());
+        $this->assertInstanceOf(HealthCheck::class, $obtainHealthCheckResponse->healthCheck());
+
+        $this->assertTrue($obtainHealthCheckResponse->healthCheck()->success()->value());
     }
 }

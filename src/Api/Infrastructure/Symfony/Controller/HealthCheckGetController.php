@@ -11,7 +11,7 @@ final class HealthCheckGetController extends AbstractApiController
     public function __invoke(ObtainHealthCheck $service): JsonResponse
     {
         return JsonResponse::fromJsonString(
-            $this->serializeResponse($service->__invoke())
+            $this->serializeResponse($service->__invoke()->healthCheck())
         );
     }
 }

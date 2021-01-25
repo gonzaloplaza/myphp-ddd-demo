@@ -2,7 +2,6 @@
 
 namespace Api\Application\Notes\FindById;
 
-use Api\Domain\Model\Note\NoteId;
 use Api\Domain\Model\Note\NoteNotFoundException;
 use Api\Domain\Model\Note\NoteRepository;
 
@@ -17,7 +16,7 @@ final class FindNoteById
 
     public function __invoke(FindNoteByIdRequest $request): FindNoteByIdResponse
     {
-        $note = $this->noteRepository->byId(new NoteId($request->id()));
+        $note = $this->noteRepository->byId($request->id());
 
         if(empty($note)) {
             throw new NoteNotFoundException();

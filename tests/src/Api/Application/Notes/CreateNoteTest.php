@@ -16,7 +16,7 @@ final class CreateNoteTest extends ApiUnitTestCase
         $createNote = new CreateNote($this->noteRepository());
 
         $createNoteResponse = $createNote->__invoke(
-            CreateNoteRequest::create('Demo Title', 'Demo Content')
+            CreateNoteRequest::fromRequest('Demo Title', 'Demo Content')
         );
 
         $this->assertInstanceOf(CreateNoteResponse::class, $createNoteResponse);

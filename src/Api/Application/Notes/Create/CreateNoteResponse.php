@@ -7,21 +7,26 @@ use Api\Domain\Model\Note\NoteId;
 final class CreateNoteResponse
 {
     private NoteId $id;
-    private \DateTimeImmutable $createdAt;
 
-    public function __construct(NoteId $id, \DateTimeImmutable $createdAt)
+    public function __construct(NoteId $id)
     {
         $this->id = $id;
-        $this->createdAt = $createdAt;
     }
 
-    public static function create(NoteId $id, \DateTimeImmutable $createdAt): self
+    public static function create(NoteId $id): self
     {
-        return new self($id, $createdAt);
+        return new self($id);
     }
 
     public function id(): NoteId
     {
         return $this->id;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id->value()
+        ];
     }
 }

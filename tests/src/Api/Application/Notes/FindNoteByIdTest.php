@@ -17,7 +17,7 @@ final class FindNoteByIdTest extends ApiUnitTestCase
         $this->expectException(NoteNotFoundException::class);
 
         $findNoteById->__invoke(
-            FindNoteByIdRequest::create('bf6126ef-52de-44bd-8fe1-297df15259b9')
+            FindNoteByIdRequest::fromRequest('bf6126ef-52de-44bd-8fe1-297df15259b9')
         );
     }
 }

@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Api\Infrastructure\Symfony\Console;
+namespace Api\Infrastructure\Symfony\Console\Notes;
 
 use Api\Application\Notes\Create\CreateNote;
 use Api\Application\Notes\Create\CreateNoteRequest;
+use Api\Domain\Model\Note\NoteContent;
+use Api\Domain\Model\Note\NoteTitle;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -33,13 +35,13 @@ final class CreateNoteCommand extends Command
                 'title',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Title of the note'
+                'Note title'
             )
             ->addOption(
                 'content',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Text content of the note'
+                'Note content'
             )
         ;
     }
@@ -47,14 +49,11 @@ final class CreateNoteCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $createNoteResponse = $this->createNote->__invoke(CreateNoteRequest::create(
-            $input->getOption('title'),
-            $input->getOption('content')
+            new NoteTitle($input->getOption('title')),
+            new NoteContent($input->getOption('content'))
         ));
 
-        $output->writeln(sprintf(
-            'Noted Created with id: %s',
-            $createNoteResponse->id()->value()
-        ));
+        $output->writeln(json_encode($createNoteResponse->toArray()));
 
         return Command::SUCCESS;
     }

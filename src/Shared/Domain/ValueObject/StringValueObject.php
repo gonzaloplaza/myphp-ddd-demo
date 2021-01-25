@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Shared\Domain\Model;
+namespace Shared\Domain\ValueObject;
 
-abstract class StringValueObject
+abstract class StringValueObject extends SerializableValueObject
 {
     protected string $value;
 
