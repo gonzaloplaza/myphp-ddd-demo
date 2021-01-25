@@ -1,6 +1,10 @@
 # GitHub Action for Symfony5+PHP7
 name: ci
-on: [push, pull_request]
+on:
+    pull_request:
+    push:
+        branches:
+            - "master"
 jobs:
     symfony:
         name: Symfony (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
@@ -40,3 +44,12 @@ jobs:
               run: composer phpmd
             - name: Run Tests
               run: composer tests
+            - name: Upload coverage to Codecov
+              uses: codecov/codecov-action@v1
+              with:
+                  token: ${{ secrets.CODECOV_TOKEN }}
+                  file: ./coverage.xml
+                  flags: tests
+                  name: codecov-umbrella
+                  yml: ./codecov.yml
+                  fail_ci_if_error: false

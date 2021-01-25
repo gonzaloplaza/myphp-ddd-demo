@@ -84,7 +84,10 @@
             "@phpunit",
             "@behat"
         ],
-        "phpunit": "@php bin/phpunit",
+        "phpunit": [
+            "@putenv XDEBUG_MODE=coverage",
+            "@php bin/phpunit --coverage-clover=\"coverage.xml\""
+        ],
         "behat": "behat --config config/behat/behat.yaml",
         "auto-scripts": {
             "cache:clear": "symfony-cmd"

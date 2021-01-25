@@ -4,3 +4,5 @@ var/log/*
 README.md
 .env.*
 buildspec.yml
+coverage.xml
+.php_*
