@@ -1,18 +1,20 @@
 # MyPHP-DDD-Demo - Another Template for Well-designed Symfony API Projects
 
-![nginx 1.16.1](https://img.shields.io/badge/nginx-1.16-brightgreen.svg?style=flat)
 ![php 7.4](https://img.shields.io/badge/php-7.4-brightgreen.svg?style=flat)
 [![Symfony 5.2.*](https://img.shields.io/badge/Symfony-5.2.*-brightgreen.svg?style=flat)](https://symfony.com)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/gonzaloplaza/myphp-ddd-demo)
 [![Github CI](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/ci/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
 [![codecov](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo/branch/master/graph/badge.svg?token=ELT3HK2YL1)](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo)
+[![Known Vulnerabilities](https://snyk.io/test/github/gonzaloplaza/myphp-ddd-demo/badge.svg?targetFile=composer.lock)](https://snyk.io/test/github/gonzaloplaza/myphp-ddd-demo?targetFile=composer.lock)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ------
 
-- **Author**: Gonzalo Plaza <gonzalo@verize.com>
-- **Date**: January 2021
-- **Website**: https://gonzaloplaza.com
+This is a PHP7.4 - Symfony 5 boilerplate/example for JSON REST APIs, backend services,
+microservices or console/terminal applications. It's focused on simplicity, decoupling from infrastructure 
+(Hexagonal Architecture) and Domain Driven Development. 
+
+Ideas and Feature Requests are welcomed!
 
 ------
 
@@ -60,6 +62,8 @@ $ symfony server:start -d
 ```
 
 Development endpoint is: http://127.0.0.1:8000
+
+HealtCheck Endpoint is: http://127.0.0.1:8000/health_check
 
 ### Run quality tools checking (Static Analysis, Mess Detector...)
 
