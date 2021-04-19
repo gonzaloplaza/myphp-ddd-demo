@@ -21,7 +21,7 @@ Ideas and Feature Requests are welcomed!
 ### Tech Stack
 
 - PHP-FPM 7.4
-- Symfony 5.2
+- Symfony 5.2.*
 - Docker (Alpine, nginx, php-fpm, supervisord ...)
 - Good practices: DDD (Domain Drive Design), Bounded Contexts, SOLID principles, TDD&BDD... 
 - Work in progress...
