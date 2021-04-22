@@ -12,6 +12,9 @@ services:
         resource: '../../../../src/Shared/Infrastructure/Symfony/Controller'
         tags: [ 'controller.service_arguments' ]
 
+    Shared\Infrastructure\Symfony\MessageBus\:
+        resource: '../../../../src/Shared/Infrastructure/Symfony/MessageBus'
+
     symfony_uuid_generator:
         class: Shared\Infrastructure\Symfony\UidGenerator\SymfonyUuidGenerator
 

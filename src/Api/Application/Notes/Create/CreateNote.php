@@ -3,7 +3,6 @@
 namespace Api\Application\Notes\Create;
 
 use Api\Domain\Model\Note\Note;
-use Api\Domain\Model\Note\NoteContent;
 use Api\Domain\Model\Note\NoteException;
 use Api\Domain\Model\Note\NoteRepository;
 

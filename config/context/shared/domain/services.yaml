@@ -9,3 +9,4 @@ services:
 
     Shared\Domain\UuidGenerator: '@symfony_uuid_generator'
     Shared\Domain\Logger: '@Shared\Infrastructure\Logging\MonologLogger'
+    Shared\Domain\Model\DomainEventBus: '@Shared\Infrastructure\Symfony\MessageBus\MessageBus'
