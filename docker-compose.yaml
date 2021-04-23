@@ -5,14 +5,13 @@ services:
         container_name: myphp-ddd-demo-rabbitmq
         hostname: myphp-ddd-demo-1
         environment:
-            RABBITMQ_DEFAULT_USER: guest
-            RABBITMQ_DEFAULT_PASS: guest
+            RABBITMQ_DEFAULT_USER: ${DOCKER_RABBITMQ_DEFAULT_USER}
+            RABBITMQ_DEFAULT_PASS: ${DOCKER_RABBITMQ_DEFAULT_PASS}
         restart: unless-stopped
         ports:
             - "15672:15672"
             - "5672:5672"
         volumes:
-            #create custom volumes
             - rabbitmq-data:/var/lib/rabbitmq/
             - rabbitmq-logs:/var/log/rabbitmq/
         networks:
@@ -42,6 +41,12 @@ services:
             - ./etc/nginx:/etc/nginx/conf.d/
         networks:
             - network
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:8081/health_check" ]
+            interval: 1m30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
         depends_on:
             - rabbitmq
             - app

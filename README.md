@@ -11,7 +11,7 @@
 
 This is a PHP7.4 - Symfony 5 boilerplate/example for JSON REST APIs, backend services,
 microservices or console/terminal applications. It's focused on simplicity, decoupling from infrastructure 
-(Hexagonal Architecture) and Domain Driven Development. 
+(Hexagonal Architecture) and Domain Driven Design. 
 
 Ideas and Feature Requests are welcomed!
 
@@ -21,8 +21,9 @@ Ideas and Feature Requests are welcomed!
 
 - PHP-FPM 7.4
 - Symfony 5.2.*
-- Docker (Alpine, nginx, php-fpm, supervisord ...)
-- Good practices: DDD (Domain Drive Design), Bounded Contexts, SOLID principles, TDD&BDD... 
+- Docker & Docker Compose (Alpine, nginx, php-fpm, supervisord ...)
+- Rabbitmq/AMQP integration with Symfony Messenger component  
+- Good practices: DDD (Domain Driven Design), Bounded Contexts, SOLID principles, TDD&BDD... 
 - Work in progress...
 
 ### Development quality/testing tools
@@ -118,8 +119,16 @@ $ docker run --rm -d -p 9000:9000 \
 ```
 
 
-
-### Docker configuration
+### Docker, infrastructure stack configuration
 
 In [etc/](./etc/) you can find default configuration files for php7.4, php-fpm, nginx, rabbitmq and supervisor.
 If you want to extend or customize that, you can do so by mounting a configuration file in the correct folder.
+
+### Next Steps
+
+- [x] Adds DDD/Hexagonal architecture with shared bounded context
+- [x] Adds Github CI + CI testings
+- [x] Docker for local development (Docker Compose)
+- [x] RabbitMQ, Symfony Messenger DDD-integration  
+- [ ] Better documentation
+- [ ] Kubernetes yaml specs

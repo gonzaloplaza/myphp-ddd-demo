@@ -6,8 +6,9 @@ use ReflectionClass;
 use Shared\Domain\Logger;
 use Shared\Domain\Model\DomainEvent;
 use Shared\Domain\Model\DomainEventSubscriber;
+use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-final class MessageBusHandler
+final class MessageBusHandler implements MessageHandlerInterface
 {
     private Logger $logger;
     private array $subscribers;
@@ -22,11 +23,6 @@ final class MessageBusHandler
     {
         /** @var DomainEventSubscriber $domainSubscriber */
         foreach ($this->subscribers as $domainSubscriber) {
-
-            $this->logger->debug(sprintf(
-                'Checking %s subscriber...',
-                (new ReflectionClass($domainSubscriber))->getShortName()
-            ));
 
             if ($domainSubscriber->isSubscribedTo($domainEvent)) {
                 $this->logger->debug(sprintf(
