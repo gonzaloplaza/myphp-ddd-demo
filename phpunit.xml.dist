@@ -26,6 +26,10 @@
         <server name="SHELL_VERBOSITY" value="-1" />
         <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
         <server name="SYMFONY_PHPUNIT_VERSION" value="8.5" />
+
+        <!-- ###+ symfony/messenger ### -->
+        <!-- MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages -->
+        <!-- ###- symfony/messenger ### -->
     </php>
 
     <testsuites>

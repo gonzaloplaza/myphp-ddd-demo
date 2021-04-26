@@ -1,0 +1,59 @@
+version: "3.7"
+services:
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: myphp-ddd-demo-rabbitmq
+        hostname: myphp-ddd-demo-1
+        environment:
+            RABBITMQ_DEFAULT_USER: ${DOCKER_RABBITMQ_DEFAULT_USER}
+            RABBITMQ_DEFAULT_PASS: ${DOCKER_RABBITMQ_DEFAULT_PASS}
+        restart: unless-stopped
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        volumes:
+            - rabbitmq-data:/var/lib/rabbitmq/
+            - rabbitmq-logs:/var/log/rabbitmq/
+        networks:
+            - network
+    app:
+        build:
+            context: ./
+            dockerfile: ./etc/php-fpm/Dockerfile.dev
+        image: myphp-ddd-demo
+        container_name: myphp-ddd-demo
+        restart: unless-stopped
+        working_dir: /var/www/app/
+        volumes:
+            - ./:/var/www/app
+        networks:
+            - network
+        depends_on:
+            - rabbitmq
+    nginx:
+        image: nginx:1.19-alpine
+        container_name: myphp-ddd-demo-nginx
+        restart: unless-stopped
+        ports:
+            - "8081:8081"
+        volumes:
+            - ./:/var/www/app
+            - ./etc/nginx:/etc/nginx/conf.d/
+        networks:
+            - network
+        healthcheck:
+            test: [ "CMD", "curl", "-f", "http://localhost:8081/health_check" ]
+            interval: 1m30s
+            timeout: 10s
+            retries: 3
+            start_period: 30s
+        depends_on:
+            - rabbitmq
+            - app
+volumes:
+    rabbitmq-data:
+    rabbitmq-logs:
+
+networks:
+    network:
+        driver: bridge
