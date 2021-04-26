@@ -21,7 +21,7 @@ Ideas and Feature Requests are welcomed!
 
 - PHP-FPM 7.4
 - Symfony 5.2.*
-- Docker & Docker Compose (Alpine, nginx, php-fpm, supervisord ...)
+- Docker & Docker Compose (Alpine, NGINX, php-fpm, supervisord ...)
 - Rabbitmq/AMQP integration with Symfony Messenger component  
 - Good practices: DDD (Domain Driven Design), Bounded Contexts, SOLID principles, TDD&BDD... 
 - Work in progress...
@@ -88,7 +88,7 @@ $ composer behat
 $ composer phpunit
 ```
 
-### Working with Docker Compose for development:
+### Working with Docker Compose for development (recommended):
 
 You can build and run locally the application stack with Docker Compose (php-fpm app + nginx + rabbitmq).
 A shared volume between code and containers will be created (Check [docker-compose.yaml](./docker-compose.yaml)).
@@ -104,6 +104,37 @@ $ docker-compose down
 ```
 
 The application endpoint is running at: http://localhost:8081
+
+
+### RabbitMQ access and configuration (Docker Compose)
+
+If you are using Docker Compose runtime during development, be sure you have created the following environment
+variables:
+
+
+```
+#.env file
+AMPQ_TRANSPORT_DSN=amqp://user:password@myphp-ddd-demo-rabbitmq:5672/%2f/messages
+DOCKER_RABBITMQ_DEFAULT_USER=user
+DOCKER_RABBITMQ_DEFAULT_PASS=password
+```
+
+
+Once Rabbitmq cluster is created and running, run this command to start the async message consumer (We use Symfony Messenger 
+implementation): https://symfony.com/doc/current/messenger.html#transports-async-queued-messages
+
+```
+# Start listening messages (consumer)
+$ docker exec -it myphp-ddd-demo php bin/console messenger:consume async
+
+# Stop consumer
+$ docker exec -it myphp-ddd-demo php bin/console messenger:stop
+```
+
+
+Also, you can access the RabbitMQ's management UI through: http://localhost:15672 using the provided credentials.
+
+
 
 ### Standalone Docker container
 
@@ -131,4 +162,5 @@ If you want to extend or customize that, you can do so by mounting a configurati
 - [x] Docker for local development (Docker Compose)
 - [x] RabbitMQ, Symfony Messenger DDD-integration  
 - [ ] Better documentation
-- [ ] Kubernetes yaml specs
+- [x] AWS ECR buildspec (yaml specification) 
+- [ ] Kubernetes manifests.

@@ -22,9 +22,10 @@ final class SendNotification
 
     public function __invoke(SendNotificationRequest $request): SendNotificationResponse
     {
-        $content = $request->content();
-
-        $notification = Notification::create(new NotificationId($this->uuidGenerator->generate()), $content);
+        $notification = Notification::create(
+            new NotificationId($this->uuidGenerator->generate()),
+            $request->content()
+        );
 
         $this->bus->publish(NotificationCreatedEvent::create(
             $this->uuidGenerator->generate(),

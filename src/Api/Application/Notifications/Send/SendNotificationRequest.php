@@ -22,4 +22,9 @@ final class SendNotificationRequest
     {
         return $this->content;
     }
+
+    public static function fromRequest(string $content): self
+    {
+        return new self(new NotificationContent($content));
+    }
 }

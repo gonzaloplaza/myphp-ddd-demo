@@ -5,6 +5,7 @@ namespace Api\Infrastructure\Symfony\Console\Notifications;
 use Api\Application\Notifications\Send\SendNotification;
 use Api\Application\Notifications\Send\SendNotificationRequest;
 use Api\Domain\Model\Notification\NotificationContent;
+use Api\Domain\Model\Notification\NotificationException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -39,6 +40,10 @@ final class SendNotificationCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $content = $input->getOption('content');
+
+        if(empty($content)) {
+            throw new NotificationException('Invalid arguments');
+        }
 
         $sendNotificationResponse = $this->sendNotification->__invoke(SendNotificationRequest::create(new NotificationContent($content)));
 
