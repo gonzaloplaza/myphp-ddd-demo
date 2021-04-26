@@ -1,18 +1,17 @@
-# MyPHP-DDD-Demo - Another Template for Well-designed Symfony API Projects
+# MyPHP-DDD-Demo - Another Boilerplate for DDD Symfony API Projects
 
 ![php 7.4](https://img.shields.io/badge/php-7.4-brightgreen.svg?style=flat)
 [![Symfony 5.2.*](https://img.shields.io/badge/Symfony-5.2.*-brightgreen.svg?style=flat)](https://symfony.com)
 ![GitHub Repo Size](https://img.shields.io/github/repo-size/gonzaloplaza/myphp-ddd-demo)
 [![Github CI](https://github.com/gonzaloplaza/myphp-ddd-demo/workflows/ci/badge.svg)](https://github.com/gonzaloplaza/myphp-ddd-demo/actions)
 [![codecov](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo/branch/master/graph/badge.svg?token=ELT3HK2YL1)](https://codecov.io/gh/gonzaloplaza/myphp-ddd-demo)
-[![Known Vulnerabilities](https://snyk.io/test/github/gonzaloplaza/myphp-ddd-demo/badge.svg?targetFile=composer.lock)](https://snyk.io/test/github/gonzaloplaza/myphp-ddd-demo?targetFile=composer.lock)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 ------
 
 This is a PHP7.4 - Symfony 5 boilerplate/example for JSON REST APIs, backend services,
 microservices or console/terminal applications. It's focused on simplicity, decoupling from infrastructure 
-(Hexagonal Architecture) and Domain Driven Development. 
+(Hexagonal Architecture) and Domain Driven Design. 
 
 Ideas and Feature Requests are welcomed!
 
@@ -22,8 +21,9 @@ Ideas and Feature Requests are welcomed!
 
 - PHP-FPM 7.4
 - Symfony 5.2.*
-- Docker (Alpine, nginx, php-fpm, supervisord ...)
-- Good practices: DDD (Domain Drive Design), Bounded Contexts, SOLID principles, TDD&BDD... 
+- Docker & Docker Compose (Alpine, NGINX, php-fpm, supervisord ...)
+- Rabbitmq/AMQP integration with Symfony Messenger component  
+- Good practices: DDD (Domain Driven Design), Bounded Contexts, SOLID principles, TDD&BDD... 
 - Work in progress...
 
 ### Development quality/testing tools
@@ -76,7 +76,7 @@ $ composer phpmd
 
 Note: Starting local server is not needed to run tests (including e2e api tests) due
 to Symfony application bootstraping in ```tests/src/bootstrap.php```
-file and Mink Extension.
+file and Mink Extension. This is fine to work with CI tools such as Github Actions or Jenkins pipelines.
 
 ```
 $ composer tests
@@ -88,39 +88,79 @@ $ composer behat
 $ composer phpunit
 ```
 
-### Production steps
+### Working with Docker Compose for development (recommended):
 
-Build the image:
+You can build and run locally the application stack with Docker Compose (php-fpm app + nginx + rabbitmq).
+A shared volume between code and containers will be created (Check [docker-compose.yaml](./docker-compose.yaml)).
+
+```
+$ docker-compose build
+$ docker-compose up -d
+```
+
+You can stop the stack and remove containers:
+```
+$ docker-compose down
+```
+
+The application endpoint is running at: http://localhost:8081
+
+
+### RabbitMQ access and configuration (Docker Compose)
+
+If you are using Docker Compose runtime during development, be sure you have created the following environment
+variables:
+
+
+```
+#.env file
+AMPQ_TRANSPORT_DSN=amqp://user:password@myphp-ddd-demo-rabbitmq:5672/%2f/messages
+DOCKER_RABBITMQ_DEFAULT_USER=user
+DOCKER_RABBITMQ_DEFAULT_PASS=password
+```
+
+
+Once Rabbitmq cluster is created and running, run this command to start the async message consumer (We use Symfony Messenger 
+implementation): https://symfony.com/doc/current/messenger.html#transports-async-queued-messages
+
+```
+# Start listening messages (consumer)
+$ docker exec -it myphp-ddd-demo php bin/console messenger:consume async
+
+# Stop consumer
+$ docker exec -it myphp-ddd-demo php bin/console messenger:stop
+```
+
+
+Also, you can access the RabbitMQ's management UI through: http://localhost:15672 using the provided credentials.
+
+
+
+### Standalone Docker container
+
+If you want to build the standalone application container (running php-fpm on port 9000/tcp).
+
+Note: you will need a fast-cgi proxy like Apache or NGINX (https://symfony.com/doc/current/setup/web_server_configuration.html)
 
 ```
 $ docker build -t myphp-ddd-demo .
-```
 
-Start the Docker container (passing env variables if exists):
-
-```
-$ docker run --rm -d -p 8086:8086 \
+$ docker run --rm -d -p 9000:9000 \
     --name myphp-ddd-demo myphp-ddd-demo
 ```
 
-Container endpoint is running: http://localhost:8086
 
-### Docker container Description
+### Docker, infrastructure stack configuration
 
-Example PHP-FPM 7.4 & Nginx 1.16 setup for Docker, build on [Alpine Linux](http://www.alpinelinux.org/).
-The image is only +/- 35 MB large.
-
-- Built on the lightweight and secure Alpine Linux distribution
-- Very small Docker image size (+/-35 MB)
-- Uses PHP 7.4
-- Optimized for 100 concurrent users
-- Optimized to only use resources when there's traffic (by using PHP-FPM's on-demand PM)
-- The servers Nginx, PHP-FPM and supervisord run under a non-privileged user (nobody) to make it more secure
-- The logs of all the services are redirected to the output of the Docker container (visible with 
-  `docker logs -f <container name>`)
-- Follows the KISS principle (Keep It Simple, Stupid) to make it easy to understand and adjust the image to your needs
-
-### Docker configuration
-
-In [etc/docker/](./etc/docker) you can find default configuration files for Nginx, PHP, PHP-FPM and Supervisord.
+In [etc/](./etc/) you can find default configuration files for php7.4, php-fpm, nginx, rabbitmq and supervisor.
 If you want to extend or customize that, you can do so by mounting a configuration file in the correct folder.
+
+### Next Steps
+
+- [x] Adds DDD/Hexagonal architecture with shared bounded context
+- [x] Adds Github CI + CI testings
+- [x] Docker for local development (Docker Compose)
+- [x] RabbitMQ, Symfony Messenger, DDD-integration  
+- [ ] Better documentation
+- [x] AWS CodeBuild yaml specification (buildspec)
+- [ ] Kubernetes manifests.

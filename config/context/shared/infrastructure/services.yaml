@@ -12,6 +12,20 @@ services:
         resource: '../../../../src/Shared/Infrastructure/Symfony/Controller'
         tags: [ 'controller.service_arguments' ]
 
+
+    # Messenger Bus
+    Shared\Infrastructure\Symfony\MessageBus\MessageBus:
+        class: Shared\Infrastructure\Symfony\MessageBus\MessageBus
+
+    Shared\Infrastructure\Symfony\MessageBus\MessageBusHandler:
+        class: Shared\Infrastructure\Symfony\MessageBus\MessageBusHandler
+        calls:
+            - method: registerAll
+              arguments:
+                  - [
+                        '@Api\Application\Notifications\Subscribe\NotificationCreatedSubscriber'
+                    ]
+
     symfony_uuid_generator:
         class: Shared\Infrastructure\Symfony\UidGenerator\SymfonyUuidGenerator
 

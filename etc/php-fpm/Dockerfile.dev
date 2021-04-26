@@ -1,0 +1,41 @@
+FROM alpine:3.12
+
+LABEL Maintainer="Gonzalo Plaza <gonzalo@verize.com>"
+
+# Install packages
+# Add support for PHP7.4.*
+ADD https://dl.bintray.com/php-alpine/key/php-alpine.rsa.pub /etc/apk/keys/php-alpine.rsa.pub
+
+RUN apk --update-cache add ca-certificates && \
+    echo "https://dl.bintray.com/php-alpine/v3.12/php-7.4" >> /etc/apk/repositories
+
+RUN apk --no-cache add php php-fpm php-dom php-openssl php-curl \
+  php-zlib php-xml php-phar php-iconv php-intl php-ctype php-session \
+  php-mbstring php-gd php-json php-xdebug php-amqp supervisor curl \
+  && ln -s /usr/bin/php7 /usr/bin/php
+
+# Check PHP, Composer versions
+RUN php -v
+RUN php -m
+
+# Configure PHP-FPM
+COPY ./etc/php-fpm/fpm-pool.conf /etc/php7/php-fpm.d/www.conf
+COPY ./etc/php-fpm/php.ini /etc/php7/conf.d/custom.ini
+
+# Configure supervisord
+COPY ./etc/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Setup document root
+RUN mkdir -p /var/www/app
+
+# Make sure files/folders needed by the processes are accessable when they run under the nobody user
+RUN chown -R nobody.nobody /var/www/app && \
+  chown -R nobody.nobody /run
+
+# Add application
+WORKDIR /var/www/app
+
+# Let supervisord start php-fpm
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+USER nobody
