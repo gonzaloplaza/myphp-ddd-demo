@@ -160,7 +160,7 @@ If you want to extend or customize that, you can do so by mounting a configurati
 - [x] Adds DDD/Hexagonal architecture with shared bounded context
 - [x] Adds Github CI + CI testings
 - [x] Docker for local development (Docker Compose)
-- [x] RabbitMQ, Symfony Messenger DDD-integration  
+- [x] RabbitMQ, Symfony Messenger, DDD-integration  
 - [ ] Better documentation
-- [x] AWS ECR buildspec (yaml specification) 
+- [x] AWS CodeBuild yaml specification (buildspec)
 - [ ] Kubernetes manifests.
