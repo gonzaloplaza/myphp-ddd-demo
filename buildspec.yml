@@ -4,7 +4,9 @@ phases:
     install:
         commands:
             - echo Generating ECR image...
-            - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$AWS_REPOSITORY_NAME
+            - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+            - ECR_REPOSITORY_NAME=myphp-ddd-demo
+            - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPOSITORY_NAME
     build:
         commands:
             - echo Logging in to Amazon ECR...
@@ -23,6 +25,6 @@ phases:
             - echo Pushing the Docker images to $AWS_DEFAULT_REGION region ...
             - docker push $REPOSITORY_URI:latest
             - echo Writing image definitions file...
-            - printf '[{"name":"myphp-ddd-demo","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+            - printf '[{"name":"%s","imageUri":"%s"}]' $ECR_REPOSITORY_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
     files: imagedefinitions.json
