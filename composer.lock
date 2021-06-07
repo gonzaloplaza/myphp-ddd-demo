@@ -5575,16 +5575,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.85",
+            "version": "0.12.88",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "20e6333c0067875ad7697cd8acdf245c6ef69d03"
+                "reference": "464d1a81af49409c41074aa6640ed0c4cbd9bb68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/20e6333c0067875ad7697cd8acdf245c6ef69d03",
-                "reference": "20e6333c0067875ad7697cd8acdf245c6ef69d03",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/464d1a81af49409c41074aa6640ed0c4cbd9bb68",
+                "reference": "464d1a81af49409c41074aa6640ed0c4cbd9bb68",
                 "shasum": ""
             },
             "require": {
@@ -5615,7 +5615,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.85"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.88"
             },
             "funding": [
                 {
@@ -5631,7 +5631,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-27T14:13:16+00:00"
+            "time": "2021-05-17T12:24:49+00:00"
         },
         {
             "name": "phpstan/phpstan-beberlei-assert",
@@ -5688,32 +5688,31 @@
         },
         {
             "name": "phpstan/phpstan-symfony",
-            "version": "0.12.30",
+            "version": "0.12.35",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-symfony.git",
-                "reference": "8377e227368bdec99d4753a8a050e162450c2217"
+                "reference": "0cd5b0d7666294c2a983aa276bb2d7fa125d0ae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/8377e227368bdec99d4753a8a050e162450c2217",
-                "reference": "8377e227368bdec99d4753a8a050e162450c2217",
+                "url": "https://api.github.com/repos/phpstan/phpstan-symfony/zipball/0cd5b0d7666294c2a983aa276bb2d7fa125d0ae4",
+                "reference": "0cd5b0d7666294c2a983aa276bb2d7fa125d0ae4",
                 "shasum": ""
             },
             "require": {
                 "ext-simplexml": "*",
                 "php": "^7.1 || ^8.0",
-                "phpstan/phpstan": "^0.12.85"
+                "phpstan/phpstan": "^0.12.86"
             },
             "conflict": {
                 "symfony/framework-bundle": "<3.0"
             },
             "require-dev": {
-                "phing/phing": "^2.16.3",
                 "php-parallel-lint/php-parallel-lint": "^1.2",
                 "phpstan/phpstan-phpunit": "^0.12.16",
                 "phpstan/phpstan-strict-rules": "^0.12.5",
-                "phpunit/phpunit": "^7.5.20",
+                "phpunit/phpunit": "^9.5",
                 "symfony/config": "^4.2 || ^5.0",
                 "symfony/console": "^4.0 || ^5.0",
                 "symfony/framework-bundle": "^4.4 || ^5.0",
@@ -5752,9 +5751,9 @@
             "description": "Symfony Framework extensions and rules for PHPStan",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-symfony/issues",
-                "source": "https://github.com/phpstan/phpstan-symfony/tree/0.12.30"
+                "source": "https://github.com/phpstan/phpstan-symfony/tree/0.12.35"
             },
-            "time": "2021-05-03T09:17:26+00:00"
+            "time": "2021-06-02T11:44:45+00:00"
         },
         {
             "name": "symfony/browser-kit",
