@@ -46,7 +46,7 @@
         "phpstan/phpstan": "^0.12.67",
         "phpstan/phpstan-beberlei-assert": "^0.12.4",
         "phpstan/phpstan-symfony": "^0.12.14",
-        "symfony/phpunit-bridge": "^5.2"
+        "symfony/phpunit-bridge": "^6.2"
     },
     "config": {
         "optimize-autoloader": true,
