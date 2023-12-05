@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.18.5
 
 LABEL Maintainer="Gonzalo Plaza <gonzalo@verize.com>" \
       Description="Lightweight container with PHP-FPM 7.4 based on Alpine 3.12 Linux"
